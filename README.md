@@ -3,6 +3,12 @@ Accurate time is crucial for a wide variety of app functionalities, from schedul
 
 TrustedTime periodically syncs its clock to Google's servers, which have access to a highly accurate time source, so that you do not need to make a server request every time you want to know the current network time. 
 
+# Android Studio
+```
+Android Studio Meerkat Feature Drop | 2024.3.2 Nightly 2025-02-14
+Build #AI-243.24978.46.2432.13065737, built on February 14, 2025
+```
+
 # capture: Pixel 9 Pro Fold API Baklava Preview
 
 | java | kotlin | compose |
