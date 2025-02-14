@@ -6,8 +6,11 @@ TrustedTime periodically syncs its clock to Google's servers, which have access 
 # Android Studio
 ```
 Android Studio Meerkat Feature Drop | 2024.3.2 Nightly 2025-02-14
-Build #AI-243.24978.46.2432.13065737, built on February 14, 2025
 ```
+# cording flow
+https://github.com/LeoAndo/android-trustedtime-samples/pull/1<br>
+https://github.com/LeoAndo/android-trustedtime-samples/pull/3<br>
+https://github.com/LeoAndo/android-trustedtime-samples/pull/5<br>
 
 # capture: Pixel 9 Pro Fold API Baklava Preview
 
