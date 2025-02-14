@@ -16,7 +16,7 @@ https://github.com/LeoAndo/android-trustedtime-samples/pull/5<br>
 
 | java | kotlin | compose |
 |:---|:---:|:---:|
-|<img src="./JavaSample/img.png" width=320 /> |<img src="./KotlinSample/img.png" width=320 /> |<img src="./ComposeSample/img.png" width=320 /> |
+|<img src="./JavaSample/img.png" width=320 /> |<img src="./KotlinSample/img.png" width=320 /> |<img src="./ComposeSample/img_1.png" width=320 /> |
 
 # refs
 https://android-developers.googleblog.com/2025/02/trustedtime-api-introducing-reliable-approach-to-time-keeping-for-apps.html
