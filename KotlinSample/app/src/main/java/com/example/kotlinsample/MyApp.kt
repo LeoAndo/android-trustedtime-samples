@@ -6,7 +6,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.time.TrustedTimeClient
 
 class MyApp : Application() {
-    var trustedTimeClient: TrustedTimeClient? = null
+    lateinit var trustedTimeClient: TrustedTimeClient
 
     override fun onCreate() {
         super.onCreate()

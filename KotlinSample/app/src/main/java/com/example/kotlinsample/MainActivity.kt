@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             // client is null (i.e. client creation task failed) or when there is no time
             // signal available. You may not want to do this if using the system clock is
             // not suitable for your use case.
-            val currentTimeMillis = myApp.trustedTimeClient!!.computeCurrentUnixEpochMillis()
-            val instant = myApp.trustedTimeClient!!.computeCurrentInstant()
+            val currentTimeMillis = myApp.trustedTimeClient.computeCurrentUnixEpochMillis()
+            val instant = myApp.trustedTimeClient.computeCurrentInstant()
             // trustedTimeClient.computeCurrentInstant() can be used if Instant is
             // preferred to long for Unix epoch times and you are able to use the APIs.
             val currentTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
