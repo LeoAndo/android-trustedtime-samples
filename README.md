@@ -12,11 +12,18 @@ https://github.com/LeoAndo/android-trustedtime-samples/pull/1<br>
 https://github.com/LeoAndo/android-trustedtime-samples/pull/3<br>
 https://github.com/LeoAndo/android-trustedtime-samples/pull/5<br>
 
+# cording flow: Handling Google Play Services Version Updates in App
+https://github.com/LeoAndo/android-trustedtime-samples/commit/5ffc42b56d0cef5b012ace8f80ea387126f3b6bd
+
 # capture: Pixel 9 Pro Fold API Baklava Preview
 
 | java | kotlin | compose |
 |:---|:---:|:---:|
 |<img src="./JavaSample/img.png" width=320 /> |<img src="./KotlinSample/img.png" width=320 /> |<img src="./ComposeSample/img_1.png" width=320 /> |
+
+| 1 | 2 |
+|:---|:---:|
+|<img src="./ComposeSample/img_2.png" width=320 /> |<img src="./ComposeSample/img_3.png" width=320 /> |
 
 # refs
 https://android-developers.googleblog.com/2025/02/trustedtime-api-introducing-reliable-approach-to-time-keeping-for-apps.html
