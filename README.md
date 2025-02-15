@@ -15,12 +15,12 @@ In that case, it is easy to handle if you call it in Coroutine as needed in the 
 ```
 Android Studio Meerkat Feature Drop | 2024.3.2 Nightly 2025-02-14
 ```
-# cording flow
+# coding flow
 https://github.com/LeoAndo/android-trustedtime-samples/pull/1<br>
 https://github.com/LeoAndo/android-trustedtime-samples/pull/3<br>
 https://github.com/LeoAndo/android-trustedtime-samples/pull/5<br>
 
-# cording flow: Handling Google Play Services Version Updates in App
+# coding flow: Handling Google Play Services Version Updates in App
 https://github.com/LeoAndo/android-trustedtime-samples/commit/5ffc42b56d0cef5b012ace8f80ea387126f3b6bd
 
 # capture: Pixel 9 Pro Fold API Baklava Preview
