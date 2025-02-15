@@ -4,12 +4,12 @@ Accurate time is crucial for a wide variety of app functionalities, from schedul
 TrustedTime periodically syncs its clock to Google's servers, which have access to a highly accurate time source, so that you do not need to make a server request every time you want to know the current network time. 
 
 # dev memo
-If you use Dagger Hilt to handle an instance of Task<TrustedTimeClient> in ApplicationScope, ensure that Google Play Service is up to date when the app starts. If Google Play Service is disabled or otherwise unavailable at startup, it is safe to have the app restarted with a mechanism that displays a dialog prompting the user to update. (Call Application#onCreate again.)
+If you use Dagger Hilt to handle an instance of Task in ApplicationScope, ensure that Google Play Service is up to date when the app starts. If Google Play Service is disabled or otherwise unavailable at startup, it is safe to have the mechanism that displays a dialog prompting the user to update. 
 
 Based on the above, I think it is a good idea to use Dagger Hilt to handle an instance of Task<TrustedTimeClient> in ActivityScope.
 
 In that case, it is easy to handle if you call it in Coroutine as needed in the Activity you are using, as in the code below.
-https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeSample/app/src/main/java/com/example/composesample/MainActivity.kt#L70-L97
+[https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeSample/app/src/main/java/com/example/composesample/MainActivity.kt#L70-L97](https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeSample2/app/src/main/java/com/example/composesample/MainActivity.kt#L78-L105)
 
 # Android Studio
 ```
