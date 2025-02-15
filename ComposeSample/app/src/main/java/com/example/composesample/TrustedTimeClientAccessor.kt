@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.time.TrustedTime
 import com.google.android.gms.time.TrustedTimeClient
-import java.lang.reflect.Modifier.SYNCHRONIZED
 
 object TrustedTimeClientAccessor {
     @Volatile

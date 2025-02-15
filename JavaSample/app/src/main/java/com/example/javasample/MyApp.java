@@ -1,31 +1,128 @@
 package com.example.javasample;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.time.TrustedTimeClient;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MyApp extends Application {
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1;
     @NonNull
     TrustedTimeClient trustedTimeClient;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        // アプリ内のActivityのライフサイクルを監視する
+        // Monitor the lifecycle of activities in the app
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+            }
 
-        TrustedTimeClientAccessor.getTrustedTimeClientTask(this).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                trustedTimeClient = task.getResult();
-            } else {
-                // Handle error
-                // jp) エラーになるケースの具体例がわからないため、予期せぬ問題としてクラッシュさせる
-                // en) Since I do not know the specific example of the case where an error occurs, I crash as an unexpected problem.
-                var exception = task.getException();
-                Log.e("MyApp", "error", exception);
-                throw new IllegalStateException("TrustedTimeClient is not available", exception);
+            @Override
+            public void onActivityStarted(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(@NonNull Activity activity) {
+                if (checkGooglePlayServices(activity)) {
+                    // jp) Google Playサービスが正常の場合の処理
+                    // en) Processing when Google Play services are normal
+                    Toast.makeText(activity, "Google Play services is up to date", Toast.LENGTH_SHORT).show();
+
+                    Log.d("MyApp", "trustedTimeClient: " + trustedTimeClient);
+                    if (trustedTimeClient == null) {
+                        TrustedTimeClientAccessor.getTrustedTimeClientTask(activity).addOnCompleteListener(task -> {
+                            Log.d("MyApp", "addOnCompleteListener IN task.isSuccessful(): " + task.isSuccessful());
+                            if (task.isSuccessful()) {
+                                trustedTimeClient = task.getResult();
+                            } else {
+                                // Handle error
+                                // jp) エラーになるケースの具体例がわからないため、予期せぬ問題としてクラッシュさせる
+                                // en) Since I do not know the specific example of the case where an error occurs, I crash as an unexpected problem.
+                                var exception = task.getException();
+                                Log.e("MyApp", "error", exception);
+                                throw new IllegalStateException("TrustedTimeClient is not available", exception);
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onActivityPaused(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(@NonNull Activity activity) {
+
             }
         });
+    }
+
+    /**
+     * jp) Google Playサービスが最新かどうかをチェックし、古い場合には更新を促す
+     * en) Check if Google Play services are up to date and prompt for an update if they are old
+     *
+     * @return jp) Google Playサービスが利用可能かどうか en) Whether Google Play services are available
+     */
+    private boolean checkGooglePlayServices(@NonNull final Activity activity) {
+        var googleApiAvailability = GoogleApiAvailability.getInstance();
+        var resultCode = googleApiAvailability.isGooglePlayServicesAvailable(activity);
+
+        if (resultCode == ConnectionResult.SUCCESS) {
+            // jp) Google Playサービスは正常 en) Google Play services is normal
+            return true;
+        } else if (googleApiAvailability.isUserResolvableError(resultCode)) {
+            // jp) 解決可能なエラーの場合 en) If it is a resolvable error
+            showErrorDialog(activity, resultCode);
+        } else {
+            // jp) 解決不能なエラー en) Unresolvable error
+            Toast.makeText(activity, "Google Play services are not supported on this device", Toast.LENGTH_LONG).show();
+            activity.finish(); // jp) アプリを終了する場合 en) If you want to exit the app
+        }
+        return false;
+    }
+
+    /**
+     * jp) エラーダイアログを表示して、更新を促す
+     * en) Display an error dialog and prompt for an update
+     *
+     * @param errorCode jp) Google Playサービスのエラーコード en) Google Play services error code
+     */
+    private void showErrorDialog(@NonNull final Activity activity, final int errorCode) {
+        new MaterialAlertDialogBuilder(activity)
+                .setMessage("Please update Google Play services to the latest version")
+                .setPositiveButton("update", (dialog, which) -> {
+                    var googleApiAvailability = GoogleApiAvailability.getInstance();
+                    var errorDialog =
+                            googleApiAvailability.getErrorDialog(activity, errorCode, PLAY_SERVICES_RESOLUTION_REQUEST);
+                    if (errorDialog != null) errorDialog.show();
+                })
+                .setCancelable(false)
+                .create()
+                .show();
     }
 }

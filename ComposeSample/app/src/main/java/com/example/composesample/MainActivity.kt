@@ -55,7 +55,8 @@ class MainActivity : ComponentActivity() {
 // Use TrustedTimeClient anywhere in your app
 fun test1(context: Context): Pair<Long, String> {
     val myApp = context as MyApp
-    val trustedTimeClient = myApp.trustedTimeClient
+    val trustedTimeClient =
+        myApp.trustedTimeClient ?: throw IllegalStateException("TrustedTimeClient is not available")
     // jp) computeCurrentUnixEpochMillis()の戻り値がnullになるケースが不明
     // en) It is unknown when the return value of computeCurrentUnixEpochMillis() becomes null.
     val currentTimeMillis = trustedTimeClient.computeCurrentUnixEpochMillis()!!

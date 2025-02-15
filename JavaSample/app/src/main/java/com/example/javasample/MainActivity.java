@@ -2,21 +2,14 @@ package com.example.javasample;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.time.TrustedTimeClient;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -60,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         // Use in short-lived components like Activity
         findViewById(R.id.button2).setOnClickListener(v -> {
             TrustedTimeClientAccessor.getTrustedTimeClientTask(this).addOnCompleteListener(task -> {
+                Log.d("MainActivity", "addOnCompleteListener IN task: " + task);
                 if (task.isSuccessful()) {
                     var trustedTimeClient = task.getResult();
                     var currentTimeMillis = trustedTimeClient.computeCurrentUnixEpochMillis();
