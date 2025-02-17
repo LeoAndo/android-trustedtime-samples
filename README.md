@@ -21,7 +21,7 @@ https://github.com/LeoAndo/android-trustedtime-samples/pull/3<br>
 https://github.com/LeoAndo/android-trustedtime-samples/pull/5<br>
 
 # my best project
-[https://github.com/LeoAndo/android-trustedtime-samples/commit/5ffc42b56d0cef5b012ace8f80ea387126f3b6bd](https://github.com/LeoAndo/android-trustedtime-samples/tree/main/ComposeHiltSample)
+https://github.com/LeoAndo/android-trustedtime-samples/tree/main/ComposeHiltSample
 
 # capture: Pixel 9 Pro Fold API Baklava Preview
 
