@@ -9,7 +9,7 @@ If you use Dagger Hilt to handle an instance of Task in ApplicationScope, ensure
 Based on the above, I think it is a good idea to use Dagger Hilt to handle an instance of Task<TrustedTimeClient> in ActivityScope.
 
 In that case, it is easy to handle if you call it in Coroutine as needed in the Activity you are using, as in the code below.
-[https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeSample/app/src/main/java/com/example/composesample/MainActivity.kt#L70-L97](https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeSample2/app/src/main/java/com/example/composesample/MainActivity.kt#L78-L105)
+https://github.com/LeoAndo/android-trustedtime-samples/blob/main/ComposeHiltSample/app/src/main/java/com/example/composesample/ActivityModule.kt
 
 # Android Studio
 ```
