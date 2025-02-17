@@ -2,7 +2,6 @@ package com.example.kotlinsample
 
 import android.app.Activity
 import android.app.Application
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -10,7 +9,6 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.time.TrustedTimeClient
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MyApp : Application() {
     lateinit var trustedTimeClient: TrustedTimeClient
@@ -107,23 +105,15 @@ class MyApp : Application() {
      * @param errorCode jp) Google Playサービスのエラーコード en) Google Play services error code
      */
     private fun showErrorDialog(activity: Activity, errorCode: Int) {
-        MaterialAlertDialogBuilder(activity)
-            .setMessage("Please update Google Play services to the latest version")
-            .setPositiveButton(
-                "update",
-                DialogInterface.OnClickListener { dialog, which ->
-                    val googleApiAvailability = GoogleApiAvailability.getInstance()
-                    val errorDialog =
-                        googleApiAvailability.getErrorDialog(
-                            activity,
-                            errorCode,
-                            MyApp.PLAY_SERVICES_RESOLUTION_REQUEST
-                        )
-                    errorDialog?.show()
-                })
-            .setCancelable(false)
-            .create()
-            .show()
+        val googleApiAvailability = GoogleApiAvailability.getInstance()
+        val errorDialog =
+            googleApiAvailability.getErrorDialog(
+                activity,
+                errorCode,
+                PLAY_SERVICES_RESOLUTION_REQUEST
+            )
+        errorDialog?.setCancelable(false)
+        errorDialog?.show()
     }
 
     companion object {

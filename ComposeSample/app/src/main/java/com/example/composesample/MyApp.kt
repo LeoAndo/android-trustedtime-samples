@@ -111,6 +111,7 @@ class MyApp : Application() {
             errorCode,
             PLAY_SERVICES_RESOLUTION_REQUEST
         )
+        errorDialog?.setCancelable(false)
         errorDialog?.show()
     }
 

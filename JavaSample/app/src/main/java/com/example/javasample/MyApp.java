@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.time.TrustedTimeClient;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 public class MyApp extends Application {
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1;
@@ -113,16 +112,12 @@ public class MyApp extends Application {
      * @param errorCode jp) Google Playサービスのエラーコード en) Google Play services error code
      */
     private void showErrorDialog(@NonNull final Activity activity, final int errorCode) {
-        new MaterialAlertDialogBuilder(activity)
-                .setMessage("Please update Google Play services to the latest version")
-                .setPositiveButton("update", (dialog, which) -> {
-                    var googleApiAvailability = GoogleApiAvailability.getInstance();
-                    var errorDialog =
-                            googleApiAvailability.getErrorDialog(activity, errorCode, PLAY_SERVICES_RESOLUTION_REQUEST);
-                    if (errorDialog != null) errorDialog.show();
-                })
-                .setCancelable(false)
-                .create()
-                .show();
+        var googleApiAvailability = GoogleApiAvailability.getInstance();
+        var errorDialog =
+                googleApiAvailability.getErrorDialog(activity, errorCode, PLAY_SERVICES_RESOLUTION_REQUEST);
+        if (errorDialog != null) {
+            errorDialog.setCancelable(false);
+            errorDialog.show();
+        }
     }
 }

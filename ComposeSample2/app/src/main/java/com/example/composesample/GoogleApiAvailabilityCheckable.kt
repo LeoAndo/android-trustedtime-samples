@@ -48,6 +48,7 @@ interface GoogleApiAvailabilityCheckable {
         val googleApiAvailability = GoogleApiAvailability.getInstance()
         val errorDialog =
             googleApiAvailability.getErrorDialog(this, errorCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+        errorDialog?.setCancelable(false)
         errorDialog?.show()
     }
 
