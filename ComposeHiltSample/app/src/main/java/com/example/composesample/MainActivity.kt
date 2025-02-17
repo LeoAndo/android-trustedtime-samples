@@ -22,7 +22,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composesample.GoogleApiAvailabilityCheckable.Companion.PLAY_SERVICES_RESOLUTION_REQUEST
@@ -73,10 +72,9 @@ class MainActivity : ComponentActivity(), GoogleApiAvailabilityCheckable {
             if (checkGooglePlayServices()) {
                 Toast.makeText(
                     this,
-                    "Google Play services have been updated. Please restart the app.",
+                    "Google Play services have been updated.",
                     Toast.LENGTH_LONG
                 ).show()
-                finish()
             }
         }
     }
@@ -85,6 +83,8 @@ class MainActivity : ComponentActivity(), GoogleApiAvailabilityCheckable {
 // Use in short-lived components like Activity
 suspend fun test2(trustedTimeClient: Task<TrustedTimeClient>): Pair<Long, String> {
     return suspendCoroutine { continuation ->
+        // jp) Google Playサービスが利用不可能状態の時に１度でもtrustedTimeClient.addOnCompleteListenerを呼び出すと、利用可能状態になってもコールバックのイベントが上がってこない。アプリを再起動する必要がある
+        // en) If you call trustedTimeClient.addOnCompleteListener once when Google Play services are unavailable, the callback event will not be raised even if they become available. need to restart the app.
         trustedTimeClient.addOnCompleteListener(OnCompleteListener { task ->
             if (task.isSuccessful) {
                 val trustedTimeClient: TrustedTimeClient = task.result!!

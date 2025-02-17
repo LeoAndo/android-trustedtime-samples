@@ -100,7 +100,6 @@ public class MyApp extends Application {
         } else {
             // jp) 解決不能なエラー en) Unresolvable error
             Toast.makeText(activity, "Google Play services are not supported on this device", Toast.LENGTH_LONG).show();
-            activity.finish(); // jp) アプリを終了する場合 en) If you want to exit the app
         }
         return false;
     }
